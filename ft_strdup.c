@@ -6,11 +6,10 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 18:08:11 by nhaquet           #+#    #+#             */
-/*   Updated: 2014/01/10 19:20:03 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:41:40 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s1)

@@ -6,12 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/10 19:22:03 by nhaquet           #+#    #+#             */
-/*   Updated: 2014/01/19 11:37:45 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:41:46 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*ft_strdup2(const char *s1)
 {

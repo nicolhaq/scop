@@ -6,13 +6,12 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/10 18:31:30 by nhaquet           #+#    #+#             */
-/*   Updated: 2014/01/10 18:46:25 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:40:23 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
-#include <stdlib.h>
 
 void	*ft_realloc(void *mem, size_t new_size)
 {

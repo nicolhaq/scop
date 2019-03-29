@@ -6,11 +6,10 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:49:26 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/28 17:51:17 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:38:20 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)

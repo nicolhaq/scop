@@ -6,11 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 16:38:46 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/01 15:57:48 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:44:08 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

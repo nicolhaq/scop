@@ -6,13 +6,16 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 12:23:01 by nhaquet           #+#    #+#             */
-/*   Updated: 2016/02/23 16:08:45 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/09/20 15:43:32 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIBFT_H
 # define FT_LIBFT_H
 # include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 # include "get_next_line.h"
 
 void	ft_putchar(char c);
@@ -56,4 +59,8 @@ double	ft_sqrt(double num);
 void	*ft_realloc(void *mem, size_t new_size);
 char	*ft_strdup2(const char *s1);
 int		get_next_line(int fd, char **line);
+int		ft_intlen(int nbr);
+void	ft_freetab(void **tab);
+char	*ft_itoa(int n);
+char	*ft_itoa_base(int n, unsigned int base);
 #endif

@@ -6,11 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 15:01:19 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/01 16:03:59 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:46:22 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strncpy(char *str1, const char *str2, size_t num)
 {

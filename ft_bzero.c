@@ -6,12 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 16:28:27 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/01 15:54:40 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:43:13 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
 void	ft_bzero(void *str, size_t num)
 {

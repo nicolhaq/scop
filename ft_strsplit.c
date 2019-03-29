@@ -6,12 +6,10 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 19:19:09 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/28 19:24:57 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:46:46 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 static size_t	ft_gety(const char *s, const char sep)
@@ -71,7 +69,7 @@ char			**ft_strsplit(const char *s, const char c)
 	y = ft_gety(s, c);
 	if ((dest = ft_strnew2d(y)) == NULL)
 		return (NULL);
-	dest[y] = 0;
+	dest[y] = NULL;
 	x = 0;
 	while (i < y)
 	{

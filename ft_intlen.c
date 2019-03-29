@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:28:27 by nhaquet           #+#    #+#             */
-/*   Updated: 2018/05/11 11:46:04 by nhaquet          ###   ########.fr       */
+/*   Created: 2018/03/09 15:04:28 by nhaquet           #+#    #+#             */
+/*   Updated: 2018/03/13 13:56:22 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t		ft_strlen(const char *str)
+int	ft_intlen(int nbr)
 {
-	size_t	i;
+	int	ret;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	ret = 0;
+	while ((nbr = nbr / 10) > 0)
+		ret++;
+	return (ret);
 }

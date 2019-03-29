@@ -6,12 +6,10 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 15:29:28 by evignol           #+#    #+#             */
-/*   Updated: 2016/02/23 16:02:47 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:47:03 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "libft.h"
 
 static char			*ft_strkcat(char *dest, const char *src)

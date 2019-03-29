@@ -6,11 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/24 17:37:38 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/01 16:08:41 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:46:38 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strrchr(char const *s, int c)
 {

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_freetab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:28:27 by nhaquet           #+#    #+#             */
-/*   Updated: 2018/05/11 11:46:04 by nhaquet          ###   ########.fr       */
+/*   Created: 2018/03/13 12:07:59 by nhaquet           #+#    #+#             */
+/*   Updated: 2018/05/11 11:43:21 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+void	ft_freetab(void **tab)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (tab[i] != NULL)
 	{
+		free(tab[i]);
 		i++;
 	}
-	return (i);
+	free(tab);
 }

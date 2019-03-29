@@ -6,11 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 12:15:47 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/11/20 15:13:27 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:45:00 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putchar(char c)
 {

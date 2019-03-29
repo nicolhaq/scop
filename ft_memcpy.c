@@ -6,11 +6,11 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 15:30:53 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/12/01 15:55:26 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:44:22 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {

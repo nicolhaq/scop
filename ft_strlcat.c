@@ -6,11 +6,10 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 17:47:00 by nhaquet           #+#    #+#             */
-/*   Updated: 2013/11/29 18:28:10 by nhaquet          ###   ########.fr       */
+/*   Updated: 2018/05/11 11:45:51 by nhaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
