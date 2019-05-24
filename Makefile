@@ -19,22 +19,43 @@ SRC = ft_memset.c ft_putchar.c ft_putnbr.c ft_strlen.c ft_putstr.c ft_bzero.c \
 	ft_tolower.c ft_toupper.c ft_memalloc.c ft_memdel.c ft_strjoin.c \
 	ft_strnew.c ft_strsub.c ft_strsplit.c ft_sqrt.c ft_realloc.c ft_strdup2.c \
 	get_next_line.c ft_intlen.c ft_freetab.c ft_itoa.c ft_itoa_base.c
-OBJ = $(SRC:.c=.o)
+CC = clang
+
+AS = nasm
+
+SRCDIR = srcs
+
+OBJDIR = objs
+
+OBJC = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
+
+OBJ = $(OBJC:.s=.o)
+
+CFLAGS = -Wall -Wextra -Werror #-g -MMD -fsanitize=address,undefined
+
+ASFLAGS = -f macho64 -g
+
+LDFLAGS = -Iincludes/
 
 all: $(NAME)
 
-$(NAME):
-	@gcc -c -Wall -Werror -Wextra $(SRC)
-	@ar rc libft.a $(OBJ) libft.h
+$(NAME): ${OBJ}
+	@echo ${B}Compiling [${NAME}]...${X}
+	@ar rcs ${NAME} ${OBJ}
 	@ranlib libft.a
 	@echo "libft ok"
 
+${OBJDIR}/%.o: ${SRCDIR}/%.c
+	@echo ${Y}Compiling [$@]...${X}
+	@/bin/mkdir -p ${OBJDIR}
+	@${CC} ${CFLAGS} ${LDFLAGS} -c -o $@ $<
+
 clean:
-	@rm -f $(OBJ)
+	@/bin/rm -rf $(OBJDIR)
 	@echo "delete obj"
 
 fclean: clean
-	@rm -f libft.a
+	@/bin/rm -f ${NAME}
 	@echo "delete libft.a"
 
 re: fclean all
