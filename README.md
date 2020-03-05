@@ -1,0 +1,2 @@
+# scop
+simple .obj viewer
