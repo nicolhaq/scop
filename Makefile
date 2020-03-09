@@ -71,6 +71,9 @@ re: fclean all
 
 build_dep:
 	@echo ${B}Building dependency
-	git clone https://github.com/glfw/glfw.git includes/glfw
+	git submodule init
+	git submodule update
+	cmake -B "includes/glfw" -Hincludes/glfw/.
+	make -C includes/glfw/.
 	
 .PHONY: all clean fclean re
