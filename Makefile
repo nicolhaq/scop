@@ -10,13 +10,22 @@ SRCDIR = srcs
 
 OBJDIR = objs
 
+LIBDIR = lib
+
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 
 CFLAGS += -Wall -Wextra -Werror\
 
-LDFLAGS = -Iincludes/
+LDFLAGS = -Iincludes/ -Iincludes/glfw/include/
 	# -fsanitize=address,undefined
-LIB = -lglwf
+
+LIB_GLFW = $(LIB_DIR)/GLFW
+
+LIBGLFW_DIR = $(LIB_GLFW)/src
+
+LIBGLFW_INC = $(LIB_DIR)/GLFW/include
+
+LIB = -lglfw
 ############################## COLORS ##########################################
 
 BY = "\033[33;1m"
@@ -73,7 +82,7 @@ build_dep:
 	@echo ${B}Building dependency
 	git submodule init
 	git submodule update
-	cmake -B "includes/glfw" -Hincludes/glfw/.
-	make -C includes/glfw/.
+	cmake -B "lib/glfw" -Hlib/glfw/.
+	make -C lib/glfw/.
 	
 .PHONY: all clean fclean re
