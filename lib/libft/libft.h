@@ -6,7 +6,7 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 12:23:01 by nhaquet           #+#    #+#             */
-/*   Updated: 2020/06/05 23:42:21 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/06 01:08:15 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 void	ft_putchar(char c);
 void	ft_putstr(char const *s);
 void	ft_putnbr(int n);
+void	ft_putstrfd(char const *s,int const fd);
+void	ft_putnbrfd(int n, int const fd);
 size_t	ft_strlen(const char *str);
 void	*ft_memset(void *str, int c, size_t num);
 void	ft_bzero(void *str, size_t num);

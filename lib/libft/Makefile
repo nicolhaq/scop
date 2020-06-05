@@ -6,7 +6,7 @@
 #    By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 16:52:52 by nhaquet           #+#    #+#              #
-#    Updated: 2020/06/05 23:45:54 by grolash          ###   ########.fr        #
+#    Updated: 2020/06/06 01:09:23 by grolash          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC = ft_memset.c ft_putchar.c ft_putnbr.c ft_strlen.c ft_putstr.c ft_bzero.c \
 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	ft_tolower.c ft_toupper.c ft_memalloc.c ft_memdel.c ft_strjoin.c \
 	ft_strnew.c ft_strsub.c ft_strsplit.c ft_sqrt.c ft_realloc.c ft_strdup2.c \
-	get_next_line.c ft_intlen.c ft_freetab.c ft_itoa.c ft_itoa_base.c
+	get_next_line.c ft_intlen.c ft_freetab.c ft_itoa.c ft_itoa_base.c\
+	ft_putstrfd.c ft_putnbrfd.c
 CC = clang
 
 AS = nasm
