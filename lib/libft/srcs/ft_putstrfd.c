@@ -6,14 +6,14 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 01:11:28 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/06 01:11:34 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/06 01:19:08 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "libft.h"
 
-void	ft_putstrfd(char const *s, int const fd)
+void	ft_putstrfd(int const fd, char const *s)
 {
 	write(fd, s, ft_strlen(s));
 }
