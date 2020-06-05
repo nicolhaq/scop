@@ -2,12 +2,11 @@
 #include <GLFW/glfw3.h>
 #include <math.h>
 #include <libft/libft.h>
-#include <stdio.h>
+/*#include <stdio.h>*/
 #include <stdlib.h>
 
 
 //temporary need to remove after test
-/*#include <string.h>*/
 #include "linmath.h"
 
 static const struct
@@ -42,7 +41,11 @@ static const char* fragment_shader_text =
 	"}\n";
 static void	error_callback(int error, const char* description)
 {
-	fprintf(stderr, "Error %d: %s\n", error, description);
+	ft_putstrfd(2, "Error ");
+	ft_putnbrfd(2, error);
+	ft_putstrfd(2, ": ");
+	ft_putstrfd(2, description);
+	ft_putcharfd(2, '\n');
 }
 
 static void	key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -53,11 +56,36 @@ static void	key_callback(GLFWwindow* window, int key, int scancode, int action, 
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
+int vertex_controler(GLuint *program)
+{
+	GLuint vertex_buffer;
+	GLuint vertex_shader;
+	GLuint fragment_shader;
+
+	vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+	fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+	*program = glCreateProgram();
+	if(!vertex_shader || !fragment_shader || !*program)
+		return (0);
+	glGenBuffers(1, &vertex_buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
+	glCompileShader(vertex_shader);
+	glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
+	glCompileShader(fragment_shader);
+	glAttachShader(*program, vertex_shader);
+	glAttachShader(*program, fragment_shader);
+	glLinkProgram(*program);
+	return (1);
+}
+
 static int	window_controler()
 {
-	GLuint vertex_buffer, vertex_shader, fragment_shader, program;
+	GLuint program;
 	GLint mvp_location, vpos_location, vcol_location;
-	GLFWwindow* window = glfwCreateWindow(640, 480, "Scop", NULL, NULL);
+	GLFWwindow* window;
+	window = glfwCreateWindow(640, 480, "Scop", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -70,23 +98,7 @@ static int	window_controler()
 
 	// NOTE: OpenGL error checks have been omitted for brevity
 
-	glGenBuffers(1, &vertex_buffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
-	glCompileShader(vertex_shader);
-
-	fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
-	glCompileShader(fragment_shader);
-
-	program = glCreateProgram();
-	glAttachShader(program, vertex_shader);
-	glAttachShader(program, fragment_shader);
-	glLinkProgram(program);
-
+	vertex_controler(&program);
 	mvp_location = glGetUniformLocation(program, "MVP");
 	vpos_location = glGetAttribLocation(program, "vPos");
 	vcol_location = glGetAttribLocation(program, "vCol");
@@ -133,7 +145,7 @@ int		main(int argc, char** argv)
 	ft_putchar('l');
 	if (!glfwInit())
 	{
-		puts("error: glfwInit failed");
+		ft_putstr("error: glfwInit failed");
 		return (-1);
 	}
 	glfwSetErrorCallback(error_callback);
