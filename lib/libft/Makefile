@@ -6,7 +6,7 @@
 #    By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 16:52:52 by nhaquet           #+#    #+#              #
-#    Updated: 2020/06/05 23:32:25 by grolash          ###   ########.fr        #
+#    Updated: 2020/06/05 23:45:54 by grolash          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ CFLAGS = -Wall -Wextra -Werror #-g -MMD -fsanitize=address,undefined
 
 ASFLAGS = -f macho64 -g
 
-LDFLAGS = -Iincludes/ -I.
+LDFLAGS = -I.
 
 all: $(NAME)
 

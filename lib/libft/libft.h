@@ -6,7 +6,7 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 12:23:01 by nhaquet           #+#    #+#             */
-/*   Updated: 2018/09/20 15:43:32 by nhaquet          ###   ########.fr       */
+/*   Updated: 2020/06/05 23:42:21 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "get_next_line.h"
+# include "includes/get_next_line.h"
 
 void	ft_putchar(char c);
 void	ft_putstr(char const *s);
