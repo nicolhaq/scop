@@ -3,6 +3,7 @@
 NAME = scop
 
 SRC =	main.c\
+	glad.c
 
 CC = clang
 
@@ -16,16 +17,10 @@ OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 
 CFLAGS += -Wall -Wextra -Werror\
 
-LDFLAGS = -Iincludes/ -Iincludes/glfw/include/
+LDFLAGS = -Iincludes -Ilib
+	#-Llib/GLFW/src
 	# -fsanitize=address,undefined
-
-LIB_GLFW = $(LIB_DIR)/GLFW
-
-LIBGLFW_DIR = $(LIB_GLFW)/src
-
-LIBGLFW_INC = $(LIB_DIR)/GLFW/include
-
-LIB = -lglfw
+LIB = -lglfw -lm -ldl
 ############################## COLORS ##########################################
 
 BY = "\033[33;1m"
@@ -59,7 +54,7 @@ ${NAME}: ${OBJ}
 
 ${OBJDIR}/%.o: ${SRCDIR}/%.c
 	@echo ${Y}Compiling [$@]...${X}
-	@/bin/mkdir -p ${OBJDIR} ${OBJDIR}/virus
+	@/bin/mkdir -p ${OBJDIR} ${OBJDIR}
 	@${CC} ${CFLAGS} ${LDFLAGS} -c -o $@ $<
 	@printf ${UP}${CUT}
 
@@ -78,11 +73,11 @@ re: fclean all
 
 ############################# DEPENDENCY ######################################
 
-build_dep:
-	@echo ${B}Building dependency
-	git submodule init
-	git submodule update
-	cmake -B "lib/glfw" -Hlib/glfw/.
-	make -C lib/glfw/.
+#build_dep:
+	#@echo ${B}Building dependency
+	#git submodule init
+	#git submodule update
+	#cmake -B "lib/GLFW" -Hlib/GLFW/.
+	#make -C lib/GLFW/.
 	
 .PHONY: all clean fclean re
