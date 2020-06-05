@@ -18,9 +18,8 @@ OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 CFLAGS += -Wall -Wextra -Werror\
 
 LDFLAGS = -Iincludes -Ilib
-	#-Llib/GLFW/src
 	# -fsanitize=address,undefined
-LIB = -lglfw -lm -ldl
+LIB = -lglfw -lm -ldl -Llib/libft -lft
 ############################## COLORS ##########################################
 
 BY = "\033[33;1m"
@@ -45,11 +44,11 @@ CUT = "\033[K"
 
 ############################## RULES ###########################################
 
-all: ${NAME}
+all: build_dep ${NAME}
 
 ${NAME}: ${OBJ}
 	@echo ${B}Compiling [${NAME}]...${X}
-	@${CC} ${LDFLAGS} ${LIB} -o $@ ${OBJ}
+	@${CC} ${LDFLAGS} -o $@ ${OBJ} ${LIB}
 	@echo ${G}Success"   "[${NAME}]${X}
 
 ${OBJDIR}/%.o: ${SRCDIR}/%.c
@@ -59,12 +58,14 @@ ${OBJDIR}/%.o: ${SRCDIR}/%.c
 	@printf ${UP}${CUT}
 
 ############################## GENERAL #########################################
+libftfclean:
+	make -C lib/libft fclean
 
 clean:
 	@echo ${R}Cleaning"  "[objs]...${X}
 	@/bin/rm -Rf ${OBJDIR}
 
-fclean: clean
+fclean: clean_dep clean
 	@echo ${R}Cleaning"  "[${NAME}]...${X}
 	@/bin/rm -f ${NAME}
 	@/bin/rm -Rf ${NAME}.dSYM
@@ -73,11 +74,12 @@ re: fclean all
 
 ############################# DEPENDENCY ######################################
 
-#build_dep:
-	#@echo ${B}Building dependency
-	#git submodule init
-	#git submodule update
-	#cmake -B "lib/GLFW" -Hlib/GLFW/.
-	#make -C lib/GLFW/.
-	
-.PHONY: all clean fclean re
+build_dep:
+	@echo ${B}Building dependency
+	make -C lib/libft
+
+clean_dep:
+	@echo ${B}cleaning dependency
+	make -C lib/libft fclean
+
+.PHONY: all clean fclean re build_dep clean_dep

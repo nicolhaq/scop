@@ -1,6 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
+#include <libft/libft.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -129,7 +130,7 @@ int		main(int argc, char** argv)
 {
 	(void)argc;
 	(void)argv;
-
+	ft_putchar('l');
 	if (!glfwInit())
 	{
 		puts("error: glfwInit failed");
