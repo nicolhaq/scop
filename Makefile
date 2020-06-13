@@ -7,9 +7,9 @@ SRC =	main.c\
 
 CC = clang
 
-SRCDIR = srcs
+SRCDIR = src
 
-OBJDIR = objs
+OBJDIR = obj
 
 LIBDIR = lib
 
