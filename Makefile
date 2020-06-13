@@ -17,7 +17,7 @@ OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 
 CFLAGS += -Wall -Wextra -Werror\
 
-LDFLAGS = -Iincludes -Ilib
+LDFLAGS = -Iinclude -Ilib
 	# -fsanitize=address,undefined
 LIB = -lglfw -lm -ldl -Llib/libft -lft
 ############################## COLORS ##########################################
