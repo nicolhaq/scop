@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcharfd.c                                     :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 01:20:44 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/06 01:21:16 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/16 14:54:39 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "libft.h"
 
-void	ft_putcharfd(int const fd, char c)
+void	ft_putchar_fd(int const fd, char c)
 {
 	write(fd, &c, 1);
 }
