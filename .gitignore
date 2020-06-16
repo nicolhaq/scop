@@ -54,3 +54,7 @@ dkms.conf
 # ccls
 .ccls*
 compile_commands.json
+
+.clangd/*
+
+scop

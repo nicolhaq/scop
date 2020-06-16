@@ -2,7 +2,8 @@
 
 NAME = scop
 
-SRC =	main.c\
+SRC =	callback.c\
+	main.c\
 	glad.c
 
 CC = clang
