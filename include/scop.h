@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/13 23:52:49 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/17 14:27:26 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 # include <stdlib.h>
 
 void	error_callback(int error, const char* description);
-void	key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void	key_callback(GLFWwindow* window, int key, int scancode,\
+		int action, int mods);
+void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
 #endif

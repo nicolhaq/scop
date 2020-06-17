@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:37 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/16 14:43:55 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/17 14:22:03 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@ void	error_callback(int error, const char* description)
 	ft_putchar_fd(2, '\n');
 }
 
-void	key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void	key_callback(GLFWwindow* window, int key,\
+		int scancode __attribute__((unused)), int action,\
+		int mods __attribute__((unused)))
 {
-	(void)scancode;
-	(void)mods;
-
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void	framebuffer_size_callback(GLFWwindow *window __attribute__((unused)),\
+		int width, int height)
+{
+	glViewport(0, 0, width, height);
 }
