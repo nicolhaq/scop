@@ -2,7 +2,9 @@
 
 NAME = scop
 
-SRC =	callback.c\
+SRC =	init.c\
+	shader.c\
+	callback.c\
 	main.c\
 	glad.c
 
