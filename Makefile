@@ -26,8 +26,8 @@ LDFLAGS = -Iinclude -Ilib
 
 ifeq ($UNAME,Darwin)
 	CFLAGS += -DMACOS
-	LDFLAGS += -I/Users/nhaquet/homebrew/Cellar/glfw/3.3.2/include
-	LIB = -L/Users/nhaquet/homebrew/Cellar/glfw/3.3.2/lib
+	LDFLAGS += -I/Users/nhaquet/homebrew/include
+	LIB = -L/Users/nhaquet/homebrew/lib 
 endif
 
 LIB += -lglfw -lm -ldl -Llib/libft -lft\
