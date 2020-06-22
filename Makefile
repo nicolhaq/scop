@@ -22,16 +22,15 @@ OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 
 CFLAGS = -Wall -Wextra -Werror
 
-LDFLAGS = -Iinclude -Ilib 
-
-ifeq ($UNAME,Darwin)
-	CFLAGS += -DMACOS
-	LDFLAGS += -I/Users/nhaquet/homebrew/include
-	LIB = -L/Users/nhaquet/homebrew/lib 
-endif
+LDFLAGS = -Iinclude -Ilib
 
 LIB += -lglfw -lm -ldl -Llib/libft -lft\
 	#-fsanitize=address,undefined
+ifeq ($(UNAME),Darwin)
+	CFLAGS += -DMACOS
+	LDFLAGS += -I/Users/nhaquet/homebrew/include
+	LIB += -L/Users/nhaquet/homebrew/lib 
+endif
 ############################## COLORS ##########################################
 
 BY = "\033[33;1m"
