@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:37 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/17 16:49:14 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/22 14:38:14 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	key_callback(GLFWwindow* window, int key,\
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
+	if (key == GLFW_KEY_V && action == GLFW_PRESS)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	if (key == GLFW_KEY_V && action == GLFW_RELEASE)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void	framebuffer_size_callback(GLFWwindow *window __attribute__((unused)),\

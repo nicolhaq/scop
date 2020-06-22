@@ -10,6 +10,8 @@ SRC =	init.c\
 
 CC = clang
 
+UNAME := $(shell uname -s)
+
 SRCDIR = src
 
 OBJDIR = obj
@@ -18,11 +20,18 @@ LIBDIR = lib
 
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 
-CFLAGS += -Wall -Wextra -Werror\
+CFLAGS = -Wall -Wextra -Werror
 
-LDFLAGS = -Iinclude -Ilib
-	# -fsanitize=address,undefined
-LIB = -lglfw -lm -ldl -Llib/libft -lft
+LDFLAGS = -Iinclude -Ilib 
+
+ifeq ($UNAME,Darwin)
+	CFLAGS += -DMACOS
+	LDFLAGS += -I/Users/nhaquet/homebrew/Cellar/glfw/3.3.2/include
+	LIB = -L/Users/nhaquet/homebrew/Cellar/glfw/3.3.2/lib
+endif
+
+LIB += -lglfw -lm -ldl -Llib/libft -lft\
+	#-fsanitize=address,undefined
 ############################## COLORS ##########################################
 
 BY = "\033[33;1m"

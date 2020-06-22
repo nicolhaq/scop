@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:10:44 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/19 14:41:20 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/22 15:02:36 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <scop.h>
@@ -18,7 +18,10 @@ static int	init_window(GLFWwindow **window)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	/*uncoment on macos*/
-	/*glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);*/
+#ifdef MACOS
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	ft_putstr_fd(2,"test\n");
+#endif
 	*window = glfwCreateWindow(800, 600,"scop", NULL, NULL);
 	if(*window == NULL)
 		return (-12);

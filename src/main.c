@@ -6,13 +6,13 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/19 16:27:06 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/22 14:39:20 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <scop.h>
 
-static void	populate_vertices(GLuint *VAO, GLuint *VBO, GLuint *EBO)
+static void populate_VAO(GLuint *VAO)
 {
 	/*temporary renove when parser is ready*/
 	static const GLfloat	vertices[12] =
@@ -22,32 +22,29 @@ static void	populate_vertices(GLuint *VAO, GLuint *VBO, GLuint *EBO)
 		-0.5f, -0.5f, 0.0f,
 		-0.5f,  0.5f, 0.0f
 	};
-        static const GLuint	indices[6] = {0, 1, 3, 1, 2, 3};
+	static const GLuint	indices[6] = {0, 1, 3, 1, 2, 3};
+	GLuint			VBO;
+	GLuint			EBO;
 
-        glGenVertexArrays(1, VAO);
-	glGenBuffers(1, VBO);
-	glGenBuffers(1, EBO);
+	glGenVertexArrays(1, VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
 	glBindVertexArray(*VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, *VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,\
 			GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *EBO);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,\
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,\
 			GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,\
-			3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
 	glEnableVertexAttribArray(0);
 }
 
 static void	draw(GLFWwindow **window, GLuint *shader_program)
 {
-	GLuint			VBO;
 	GLuint			VAO;
-	GLuint			EBO;
 
-	populate_vertices(&VAO, &VBO, &EBO);
-	/*todo: need debug mode toggle*/
-	/*glad_glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);*/
+        populate_VAO(&VAO);
 	while(!glfwWindowShouldClose(*window))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
