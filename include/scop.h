@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 16:38:45 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/23 16:49:40 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <math.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-# define OSX 0
 # ifdef MACOS
 #  define OSX 1
+# else
+#  define OSX 0
 # endif
 
 void	error_callback(int error, const char *description);
