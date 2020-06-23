@@ -6,23 +6,24 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/22 14:39:20 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/23 13:47:49 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <scop.h>
 
+/*todo: renove when parser is ready*/
+static const GLfloat	vertices[24] =
+{
+	0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+	0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+	-0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f
+};
+static const GLuint	indices[6] = {0, 1, 3, 1, 2, 3};
+
 static void populate_VAO(GLuint *VAO)
 {
-	/*temporary renove when parser is ready*/
-	static const GLfloat	vertices[12] =
-	{
-		 0.5f,  0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-	static const GLuint	indices[6] = {0, 1, 3, 1, 2, 3};
 	GLuint			VBO;
 	GLuint			EBO;
 
@@ -36,8 +37,12 @@ static void populate_VAO(GLuint *VAO)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,\
 			GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),\
+			(void *)0);
 	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),\
+			(void *)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 }
 
 static void	draw(GLFWwindow **window, GLuint *shader_program)
