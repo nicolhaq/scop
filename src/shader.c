@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:29:36 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 13:35:04 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/23 21:58:45 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 static int	program_link_error(GLuint shader_program)
 {
 	int		success;
-	char		infoLog[512];
+	char	info_log[512];
 
 	glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
 	if (!success)
 	{
-		glGetProgramInfoLog(shader_program, 512, NULL, infoLog);
+		glGetProgramInfoLog(shader_program, 512, NULL, info_log);
 		ft_putstr_fd(2, "ERROR::SHADER::PROGRAM::LINKING_FAILED:\n");
-		ft_putstr_fd(2, infoLog);
+		ft_putstr_fd(2, info_log);
 		ft_putchar_fd(2, '\n');
-		return (-1);	
+		return (-1);
 	}
 	return (0);
 }
@@ -32,16 +32,16 @@ static int	program_link_error(GLuint shader_program)
 static int	shader_compile_error(GLuint shader)
 {
 	int		success;
-	char		infoLog[512];
+	char	info_log[512];
 
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		glGetShaderInfoLog(shader, 512, NULL, info_log);
 		ft_putstr_fd(2, "ERROR::SHADER::COMPILATION_PAILED:\n");
-		ft_putstr_fd(2, infoLog);
+		ft_putstr_fd(2, info_log);
 		ft_putchar_fd(2, '\n');
-		return (-1);	
+		return (-1);
 	}
 	return (0);
 }
@@ -49,19 +49,19 @@ static int	shader_compile_error(GLuint shader)
 static int	shader_compil(GLuint *vertex_shader)
 {
 	const char	*vertex_shader_source = "#version 410 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"layout (location = 1) in vec3 aColor;\n"
-		"out vec3 v_color;\n"
-		"void main()\n"
-		"{\n"
-		"	gl_Position = vec4(aPos, 1.0);\n"
-		"	v_color = aColor;\n"
-		"}\0";
 
+	"layout (location = 0) in vec3 aPos;\n"
+	"layout (location = 1) in vec3 aColor;\n"
+	"out vec3 v_color;\n"
+	"void main()\n"
+	"{\n"
+	"	gl_Position = vec4(aPos, 1.0);\n"
+	"	v_color = aColor;\n"
+	"}\0";
 	*vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(*vertex_shader, 1, &vertex_shader_source, NULL);
 	glCompileShader(*vertex_shader);
-	if(shader_compile_error(*vertex_shader))
+	if (shader_compile_error(*vertex_shader))
 		return (-21);
 	return (0);
 }
@@ -69,36 +69,36 @@ static int	shader_compil(GLuint *vertex_shader)
 static int	frag_shader_compil(GLuint *fragment_shader)
 {
 	const char *fragment_shader_source = "#version 410 core\n"
-		"out vec4 frag_color;\n"
-		"in vec3 v_color;\n"
-		"void main()\n"
-		"{\n"
-		"	frag_color = vec4(v_color, 1.0f);\n"
-		"}\0";
 
+	"out vec4 frag_color;\n"
+	"in vec3 v_color;\n"
+	"void main()\n"
+	"{\n"
+	"	frag_color = vec4(v_color, 1.0f);\n"
+	"}\0";
 	*fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(*fragment_shader, 1, &fragment_shader_source, NULL);
 	glCompileShader(*fragment_shader);
-	if(shader_compile_error(*fragment_shader))
+	if (shader_compile_error(*fragment_shader))
 		return (-22);
 	return (0);
 }
 
-int		shader_link(GLuint *shader_program)
+int			shader_link(GLuint *shader_program)
 {
-	int	error;
+	int		error;
 	GLuint	vertex_shader;
 	GLuint	fragment_shader;
 
 	error = 0;
-	if((error = shader_compil(&vertex_shader)) ||\
+	if ((error = shader_compil(&vertex_shader)) ||\
 		(error = frag_shader_compil(&fragment_shader)))
 		return (error);
 	*shader_program = glCreateProgram();
 	glAttachShader(*shader_program, vertex_shader);
 	glAttachShader(*shader_program, fragment_shader);
 	glLinkProgram(*shader_program);
-	if(program_link_error(*shader_program))
+	if (program_link_error(*shader_program))
 		return (-23);
 	glDeleteShader(vertex_shader);
 	glDeleteShader(fragment_shader);

@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 16:49:40 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/23 16:51:53 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+
 # ifdef MACOS
 #  define OSX 1
 # else
@@ -27,6 +28,6 @@ void	error_callback(int error, const char *description);
 void	key_callback(GLFWwindow *window, int key, int scancode,\
 		int action, int mods);
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
-int	init(GLFWwindow **window);
-int	shader_link(GLuint *shader_program);
+int		init(GLFWwindow **window);
+int		shader_link(GLuint *shader_program);
 #endif
