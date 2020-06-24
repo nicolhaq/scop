@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 16:51:53 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/24 14:40:01 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 #  define OSX 0
 # endif
 
-void	error_callback(int error, const char *description);
-void	key_callback(GLFWwindow *window, int key, int scancode,\
-		int action, int mods);
-void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
-int		init(GLFWwindow **window);
-int		shader_link(GLuint *shader_program);
+void		error_callback(int error, const char *description);
+void		key_callback(GLFWwindow *window, int key, int scancode,\
+			int action, int mods);
+void		framebuffer_size_callback(GLFWwindow *window, int width,\
+			int height);
+int			init(GLFWwindow **window);
+int			shader_link(GLuint *shader_program);
+const char	*load_source(char *filename);
 #endif

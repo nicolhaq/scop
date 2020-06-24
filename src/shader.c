@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:29:36 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 21:58:45 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/24 14:23:12 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,9 @@ static int	shader_compile_error(GLuint shader)
 
 static int	shader_compil(GLuint *vertex_shader)
 {
-	const char	*vertex_shader_source = "#version 410 core\n"
+	const char *vertex_shader_source;
 
-	"layout (location = 0) in vec3 aPos;\n"
-	"layout (location = 1) in vec3 aColor;\n"
-	"out vec3 v_color;\n"
-	"void main()\n"
-	"{\n"
-	"	gl_Position = vec4(aPos, 1.0);\n"
-	"	v_color = aColor;\n"
-	"}\0";
+	vertex_shader_source = load_source("src/shader/vertex_shader.vert");
 	*vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(*vertex_shader, 1, &vertex_shader_source, NULL);
 	glCompileShader(*vertex_shader);
@@ -68,14 +61,9 @@ static int	shader_compil(GLuint *vertex_shader)
 
 static int	frag_shader_compil(GLuint *fragment_shader)
 {
-	const char *fragment_shader_source = "#version 410 core\n"
+	const char *fragment_shader_source;
 
-	"out vec4 frag_color;\n"
-	"in vec3 v_color;\n"
-	"void main()\n"
-	"{\n"
-	"	frag_color = vec4(v_color, 1.0f);\n"
-	"}\0";
+	fragment_shader_source = load_source("src/shader/fragment_shader.frag");
 	*fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(*fragment_shader, 1, &fragment_shader_source, NULL);
 	glCompileShader(*fragment_shader);

@@ -2,7 +2,8 @@
 
 NAME = scop
 
-SRC =	init.c\
+SRC = utils.c\
+	init.c\
 	shader.c\
 	callback.c\
 	main.c\
