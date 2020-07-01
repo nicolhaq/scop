@@ -6,14 +6,13 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/01 13:13:23 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/01 13:45:58 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "scop.h"
 #include <string.h>
-#include <stdio.h>
 
 void	print_mat4(t_mat4 *mat)
 {
@@ -23,7 +22,6 @@ void	print_mat4(t_mat4 *mat)
 	while (i < 16)
 	{
 		ft_putnbr((int)mat->ptr[i]);
-		printf("%f ", mat->ptr[i]);
 		ft_putstr("	|");
 		if (i == 3 || i == 7 || i == 11)
 			ft_putchar('\n');
@@ -34,12 +32,7 @@ void	print_mat4(t_mat4 *mat)
 
 void	mat4_init(t_mat4 *mat4, GLfloat source)
 {
-	int	i = 0;
-
-	while (i > 16)
-	{
-		mat4->ptr[i] = 0;
-	}
+	ft_bzero(mat4->ptr, sizeof(mat4->ptr));
 	mat4->x = &mat4->ptr[0];
 	mat4->y = &mat4->ptr[4];
 	mat4->z = &mat4->ptr[8];
@@ -52,7 +45,6 @@ void	mat4_init(t_mat4 *mat4, GLfloat source)
 	mat4->y[1] = source;
 	mat4->z[2] = source;
 	mat4->w[3] = source;
-	print_mat4(mat4);
 }
 
 void	mat_translate(t_mat4 *mat4, GLfloat *vec3)

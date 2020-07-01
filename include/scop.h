@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/01 11:48:14 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/01 13:42:07 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ int				shader_link(GLuint *shader_program);
 const char		*load_source(char *filename);
 void			mat4_init(t_mat4 *mat4, GLfloat source);
 void			mat_mult(t_mat4 *mat4, t_mat4 *mult);
+void			print_mat4(t_mat4 *mat);
 #endif

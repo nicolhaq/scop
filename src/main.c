@@ -6,10 +6,11 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 19:26:04 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/01 13:45:11 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include <scop.h>
 
 /*
@@ -64,14 +65,12 @@ static void	draw(GLFWwindow **window, GLuint *shader_program)
 	}
 }
 
-int			main(int argc, char **argv)
+int			main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 {
 	GLFWwindow	*window;
 	GLuint		shader_program;
 	int			error;
 
-	(void)argc;
-	(void)argv;
 	error = 0;
 	window = NULL;
 	if (!(error = init(&window)))
