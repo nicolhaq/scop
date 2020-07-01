@@ -6,7 +6,7 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 09:49:34 by nhaquet           #+#    #+#             */
-/*   Updated: 2018/05/11 11:44:52 by nhaquet          ###   ########.fr       */
+/*   Updated: 2020/07/01 11:20:56 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	*ft_memset(void *str, int c, size_t num)
 {
 	unsigned char	*temp;
 
-	temp = str;
+	temp = (unsigned char*)str;
 	while (num--)
 	{
-		*temp++ = c;
+		*temp++ = (unsigned char)c;
 	}
 	return (str);
 }
