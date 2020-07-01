@@ -2,7 +2,8 @@
 
 NAME = scop
 
-SRC = utils.c\
+SRC = math.c\
+	utils.c\
 	init.c\
 	shader.c\
 	callback.c\
@@ -25,8 +26,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 LDFLAGS = -Iinclude -Ilib
 
-LIB += -lglfw -lm -ldl -Llib/libft -lft\
-	#-fsanitize=address,undefined
+LIB += -lglfw -ldl -Llib/libft -lft \
+		#-fsanitize=address,undefined -g
 ifeq ($(UNAME),Darwin)
 	CFLAGS += -DMACOS
 	LDFLAGS += -I/Users/nhaquet/homebrew/include
