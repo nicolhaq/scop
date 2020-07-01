@@ -6,10 +6,11 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:29:36 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/24 14:23:12 by grolash          ###   ########.fr       */
+/*   Updated: 2020/06/30 16:31:06 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include <scop.h>
 
 static int	program_link_error(GLuint shader_program)
@@ -54,6 +55,7 @@ static int	shader_compil(GLuint *vertex_shader)
 	*vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(*vertex_shader, 1, &vertex_shader_source, NULL);
 	glCompileShader(*vertex_shader);
+	free((void*)vertex_shader_source);
 	if (shader_compile_error(*vertex_shader))
 		return (-21);
 	return (0);
@@ -67,6 +69,7 @@ static int	frag_shader_compil(GLuint *fragment_shader)
 	*fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(*fragment_shader, 1, &fragment_shader_source, NULL);
 	glCompileShader(*fragment_shader);
+	free((void*)fragment_shader_source);
 	if (shader_compile_error(*fragment_shader))
 		return (-22);
 	return (0);
