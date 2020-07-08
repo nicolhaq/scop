@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/01 13:42:07 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/07 13:52:15 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct	s_mat4
 	GLfloat *w;
 }				t_mat4;
 
+enum			e_axis
+{
+	x = 0,
+	y = 1,
+	z = 2,
+	w = 3
+};
+
 void			error_callback(int error, const char *description);
 void			key_callback(GLFWwindow *window, int key, int scancode,\
 				int action, int mods);
@@ -45,4 +53,7 @@ const char		*load_source(char *filename);
 void			mat4_init(t_mat4 *mat4, GLfloat source);
 void			mat_mult(t_mat4 *mat4, t_mat4 *mult);
 void			print_mat4(t_mat4 *mat);
+void			mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y,GLfloat z);
+void			mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis);
+void			vec_mult(t_mat4 *mat4, GLfloat vec4[4]);
 #endif

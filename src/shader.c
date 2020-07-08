@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:29:36 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/30 16:31:06 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/07 13:14:40 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	shader_compile_error(GLuint shader)
 	if (!success)
 	{
 		glGetShaderInfoLog(shader, 512, NULL, info_log);
-		ft_putstr_fd(2, "ERROR::SHADER::COMPILATION_PAILED:\n");
+		ft_putstr_fd(2, "ERROR::SHADER::COMPILATION_FAILED:\n");
 		ft_putstr_fd(2, info_log);
 		ft_putchar_fd(2, '\n');
 		return (-1);

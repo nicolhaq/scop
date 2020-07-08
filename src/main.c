@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/01 13:45:11 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/07 14:24:40 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,20 @@ static void	populate_vao(GLuint *vao)
 static void	draw(GLFWwindow **window, GLuint *shader_program)
 {
 	GLuint	vao;
+	t_mat4	trans;
+	GLuint	transform;
 
 	populate_vao(&vao);
 	while (!glfwWindowShouldClose(*window))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
+		mat4_init(&trans, 1.0f);
+		mat4_trans(&trans, 0.5f, -0.5f, 0.0f);
+		mat4_rotat(&trans, (GLfloat)glfwGetTime(), z);
 		glUseProgram(*shader_program);
+		transform = glGetUniformLocation(*shader_program, "transform");
+		glUniformMatrix4fv(transform,1,GL_FALSE,trans.ptr);
 		glBindVertexArray(vao);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(*window);

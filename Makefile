@@ -26,7 +26,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LDFLAGS = -Iinclude -Ilib
 
-LIB += -lglfw -ldl -Llib/libft -lft \
+LIB = -lm -lglfw -ldl -Llib/libft -lft \
 		#-fsanitize=address,undefined -g
 ifeq ($(UNAME),Darwin)
 	CFLAGS += -DMACOS
