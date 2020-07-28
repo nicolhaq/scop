@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 13:03:13 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/24 14:11:35 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/08 16:49:55 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ const char	*load_source(char *filepath)
 	if (!(source = ft_strnew(st.st_size)))
 		error_callback(-33, "source's malloc failed.");
 	if ((ret = read(fd, source, st.st_size)) == -1)
-		error_callback(-34, "cannot read vertex shader.");
+		error_callback(-34, "cannot read shader.");
 	close(fd);
 	return (source);
 }

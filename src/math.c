@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/07 14:22:37 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/10 14:26:37 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	mat_mult(t_mat4 *mat4, t_mat4 *mult)
 		j = 0;
 		i++;
 	}
-	ft_memcpy(mat4->ptr, res.ptr, sizeof(GLfloat[16]));
+	memcpy(mat4->ptr, res.ptr, sizeof(GLfloat[16]));
 }
 
 void	vec_mult(t_mat4 *mat4, GLfloat vec4[4])
@@ -53,7 +53,7 @@ void	vec_mult(t_mat4 *mat4, GLfloat vec4[4])
 		res[i] += (mat4->mat[i][3] * vec4[3]);
 		i++;
 	}
-	ft_memcpy(vec4, res, sizeof(GLfloat[3]));
+	memcpy(vec4, res, sizeof(GLfloat[3]));
 }
 
 void	print_mat4(t_mat4 *mat)
@@ -74,7 +74,7 @@ void	print_mat4(t_mat4 *mat)
 
 void	mat4_init(t_mat4 *mat4, GLfloat source)
 {
-	ft_bzero(mat4->ptr, sizeof(mat4->ptr));
+	memset(mat4->ptr, 0, sizeof(mat4->ptr));
 	mat4->x = &mat4->ptr[0];
 	mat4->y = &mat4->ptr[4];
 	mat4->z = &mat4->ptr[8];
@@ -87,6 +87,13 @@ void	mat4_init(t_mat4 *mat4, GLfloat source)
 	mat4->y[1] = source;
 	mat4->z[2] = source;
 	mat4->w[3] = source;
+}
+
+void	mat4_scale(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z)
+{
+	mat4->x[0] = x;
+	mat4->y[1] = y;
+	mat4->z[2] = z;
 }
 
 void	mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y,GLfloat z)

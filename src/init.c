@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:10:44 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/23 16:53:48 by grolash          ###   ########.fr       */
+/*   Updated: 2020/07/26 19:28:04 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	init_window(GLFWwindow **window)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	if (OSX)
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	*window = glfwCreateWindow(800, 600, "scop", NULL, NULL);
+	*window = glfwCreateWindow(600, 600, "scop", NULL, NULL);
 	if (*window == NULL)
 		return (-12);
 	glfwMakeContextCurrent(*window);
