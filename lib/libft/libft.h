@@ -6,7 +6,7 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 12:23:01 by nhaquet           #+#    #+#             */
-/*   Updated: 2020/06/16 14:52:19 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/05 14:25:57 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*ft_realloc(void *mem, size_t new_size);
 char	*ft_strdup2(const char *s1);
 int		get_next_line(int fd, char **line);
 int		ft_intlen(int nbr);
-void	ft_freetab(void **tab);
+void	ft_free_tab(void **tab);
 char	*ft_itoa(int n);
 char	*ft_itoa_base(int n, unsigned int base);
 #endif
