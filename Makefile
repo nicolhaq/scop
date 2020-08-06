@@ -2,7 +2,9 @@
 
 NAME = scop
 
-SRC = math.c\
+SRC = data.c\
+	parser.c\
+	math.c\
 	utils.c\
 	init.c\
 	shader.c\

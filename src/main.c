@@ -6,12 +6,14 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/28 16:39:00 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/06 13:32:43 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <scop.h>
+
+#include <stdio.h>
 
 /*
 **todo: renove when parser is ready
@@ -28,6 +30,7 @@ static const GLfloat	g_vertices[24] =
 	0.5f,	0.5f,	-0.5f,
 	0.5f,	-0.5f,	-0.5f,
 };
+
 static const GLuint		g_indices[36] = {
 	0, 1, 2, 2, 1, 3,
 	4, 5, 6, 6, 5, 7,
@@ -62,8 +65,10 @@ static void	draw(GLFWwindow **window, GLuint *shader_program)
 	GLuint	vao;
 	t_mat4	trans;
 	GLuint	transform;
+	int		size;
 
 	populate_vao(&vao);
+	glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
 	glEnable(GL_DEPTH_TEST);
 	while (!glfwWindowShouldClose(*window))
 	{
@@ -75,27 +80,30 @@ static void	draw(GLFWwindow **window, GLuint *shader_program)
 		transform = glGetUniformLocation(*shader_program, "transform");
 		glUniformMatrix4fv(transform,1,GL_FALSE,trans.ptr);
 		glBindVertexArray(vao);
-		glDrawElements(GL_TRIANGLES, sizeof(g_indices) / sizeof(GLuint), \
-				GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, size / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(*window);
 		glfwPollEvents();
 	}
 }
 
-int			main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
+int			main(int argc , char **argv)
 {
 	GLFWwindow	*window;
 	GLuint		shader_program;
 	int			error;
+	t_obj		obj;
 
 	error = 0;
 	window = NULL;
-	/*parser(argc, argv);*/
+	error = parser(argc, argv, &obj);
+	if (error)
+		return (error);
 	if (!(error = init(&window)))
 	{
 		if (!(error = shader_link(&shader_program)))
 			draw(&window, &shader_program);
 	}
+	free(obj.vert);
 	glfwTerminate();
 	return (error);
 }

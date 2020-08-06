@@ -6,11 +6,10 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:29:36 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/07 13:14:40 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/04 11:29:26 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include <scop.h>
 
 static int	program_link_error(GLuint shader_program)

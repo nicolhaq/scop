@@ -6,13 +6,11 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/10 14:26:37 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/06 13:09:42 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "scop.h"
-#include <string.h>
 
 void	mat_mult(t_mat4 *mat4, t_mat4 *mult)
 {
