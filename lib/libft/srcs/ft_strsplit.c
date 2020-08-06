@@ -6,7 +6,7 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 19:19:09 by nhaquet           #+#    #+#             */
-/*   Updated: 2018/05/11 11:46:46 by nhaquet          ###   ########.fr       */
+/*   Updated: 2020/08/06 13:56:11 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char		**ft_strnew2d(size_t len)
 {
 	char	**new_str;
 
-	if ((new_str = (char **)malloc(sizeof(char *) * len + 1)) == NULL)
+	if ((new_str = (char **)malloc(sizeof(char *) * (len + 1))) == NULL)
 		return (NULL);
 	ft_bzero(new_str, len);
 	return (new_str);
