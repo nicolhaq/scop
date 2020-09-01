@@ -6,45 +6,52 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 13:39:08 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/06 13:20:42 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/27 16:37:42 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft/libft.h"
 #include "scop.h"
+#include <ctype.h>
 
-int		get_data_size(char **stab, const char *delim,
-		size_t *start)
+static size_t	get_data_num(const char *s)
 {
-	size_t	i;
-	size_t	size;
+	size_t		y;
+
+	y = 0;
+	while (*s != '\0')
+	{
+		while (isspace(*s) && *s != '\0')
+			s++;
+		if (!isspace(*s) && *s != '\0')
+			y++;
+		while (!isspace(*s) && *s != '\0')
+			s++;
+	}
+	return (y);
+}
+
+size_t			get_data_size(char **stab, const char delim)
+{
+	size_t		i;
+	size_t		size;
 
 	i = 0;
 	size = 0;
-	while (stab[i] != NULL && strncmp(stab[i], delim, 2))
+	while (stab[i] != NULL && stab[i][0] != delim)
 	{
 		i++;
 	}
-	*start = i + 1;
-	while (stab[i] != NULL && !strncmp(stab[i], delim, 2))
+	while (stab[i] != NULL && stab[i][0] == delim)
 	{
-		size++;
+		size += 1 + (get_data_num(stab[i]) - 4);
 		i++;
 	}
 	return (size);
 }
 
-static int	get_data(char **stab, t_obj *obj)
-{
-	int	ret;
-
-	ret = 0;
-	ret = get_vertex(stab, obj);
-	return (ret);
-}
-
-int			parser(int argc, char **argv, t_obj *obj)
+int				parser(int argc, char **argv, t_obj *obj)
 {
 	const char	*buf;
 	char		**temp;

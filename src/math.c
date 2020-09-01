@@ -6,13 +6,13 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/06 13:09:42 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/28 14:29:01 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void	mat_mult(t_mat4 *mat4, t_mat4 *mult)
+void	mat4_mult(t_mat4 *mat4, t_mat4 *mult)
 {
 	size_t	i;
 	size_t	j;
@@ -37,39 +37,6 @@ void	mat_mult(t_mat4 *mat4, t_mat4 *mult)
 	memcpy(mat4->ptr, res.ptr, sizeof(GLfloat[16]));
 }
 
-void	vec_mult(t_mat4 *mat4, GLfloat vec4[4])
-{
-	size_t	i;
-	GLfloat	res[4];
-
-	i = 0;
-	while(i < 4)
-	{
-		res[i] = mat4->mat[i][0] * vec4[0];
-		res[i] += (mat4->mat[i][1] * vec4[1]);
-		res[i] += (mat4->mat[i][2] * vec4[2]);
-		res[i] += (mat4->mat[i][3] * vec4[3]);
-		i++;
-	}
-	memcpy(vec4, res, sizeof(GLfloat[3]));
-}
-
-void	print_mat4(t_mat4 *mat)
-{
-	int i;
-
-	i = 0;
-	while (i < 16)
-	{
-		ft_putnbr((int)mat->ptr[i]);
-		ft_putstr("	|");
-		if (i == 3 || i == 7 || i == 11)
-			ft_putchar('\n');
-		i++;
-	}
-	ft_putstr("\n===========================================\n");
-}
-
 void	mat4_init(t_mat4 *mat4, GLfloat source)
 {
 	memset(mat4->ptr, 0, sizeof(mat4->ptr));
@@ -87,6 +54,9 @@ void	mat4_init(t_mat4 *mat4, GLfloat source)
 	mat4->w[3] = source;
 }
 
+/*
+** TODO: need rewrite?
+*/
 void	mat4_scale(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z)
 {
 	mat4->x[0] = x;
@@ -94,12 +64,11 @@ void	mat4_scale(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z)
 	mat4->z[2] = z;
 }
 
-void	mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y,GLfloat z)
+void	mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z)
 {
 	mat4->w[0] = x;
 	mat4->w[1] = y;
 	mat4->w[2] = z;
-
 }
 
 void	mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis)
@@ -126,4 +95,3 @@ void	mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis)
 		mat4->y[1] = cos(rad);
 	}
 }
-

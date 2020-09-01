@@ -6,41 +6,14 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/06 13:32:43 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/28 14:23:05 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <scop.h>
 
-#include <stdio.h>
-
-/*
-**todo: renove when parser is ready
-*/
-static const GLfloat	g_vertices[24] =
-{	
-	-0.5f,	0.5f,	-0.5f,
-	-0.5f,	-0.5f,	-0.5f,
-	-0.5f,	0.5f,	0.5f,
-	-0.5f,	-0.5f,	0.5f,
-
-	0.5f,	0.5f,	0.5f,
-	0.5f,	-0.5f,	0.5f,
-	0.5f,	0.5f,	-0.5f,
-	0.5f,	-0.5f,	-0.5f,
-};
-
-static const GLuint		g_indices[36] = {
-	0, 1, 2, 2, 1, 3,
-	4, 5, 6, 6, 5, 7,
-	3, 1, 5, 5, 1, 7,
-	0, 2, 6, 6, 2, 4,
-	6, 7, 0, 0, 7, 1,
-	2, 3, 4, 4, 3, 5
-};
-
-static void	populate_vao(GLuint *vao)
+static void	populate_vao(GLuint *vao, t_obj *obj)
 {
 	GLuint	vbo;
 	GLuint	ebo;
@@ -50,24 +23,24 @@ static void	populate_vao(GLuint *vao)
 	glGenBuffers(1, &ebo);
 	glBindVertexArray(*vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertices),\
-			g_vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * obj->vert_size,\
+			obj->vert, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_indices),\
-			g_indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * obj->ind_size,\
+			obj->ind, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),\
 			(void *)0);
 	glEnableVertexAttribArray(0);
 }
 
-static void	draw(GLFWwindow **window, GLuint *shader_program)
+static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)
 {
 	GLuint	vao;
 	t_mat4	trans;
 	GLuint	transform;
 	int		size;
 
-	populate_vao(&vao);
+	populate_vao(&vao, obj);
 	glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
 	glEnable(GL_DEPTH_TEST);
 	while (!glfwWindowShouldClose(*window))
@@ -78,7 +51,7 @@ static void	draw(GLFWwindow **window, GLuint *shader_program)
 		mat4_init(&trans, 1.0f);
 		mat4_rotat(&trans, (GLfloat)glfwGetTime(), y);
 		transform = glGetUniformLocation(*shader_program, "transform");
-		glUniformMatrix4fv(transform,1,GL_FALSE,trans.ptr);
+		glUniformMatrix4fv(transform, 1, GL_FALSE, trans.ptr);
 		glBindVertexArray(vao);
 		glDrawElements(GL_TRIANGLES, size / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(*window);
@@ -86,7 +59,7 @@ static void	draw(GLFWwindow **window, GLuint *shader_program)
 	}
 }
 
-int			main(int argc , char **argv)
+int			main(int argc, char **argv)
 {
 	GLFWwindow	*window;
 	GLuint		shader_program;
@@ -101,7 +74,7 @@ int			main(int argc , char **argv)
 	if (!(error = init(&window)))
 	{
 		if (!(error = shader_link(&shader_program)))
-			draw(&window, &shader_program);
+			draw(&window, &shader_program, &obj);
 	}
 	free(obj.vert);
 	glfwTerminate();

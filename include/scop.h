@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/04 16:44:17 by grolash          ###   ########.fr       */
+/*   Updated: 2020/08/27 16:42:18 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <libft/libft.h>
 # include <string.h>
+# include <errno.h>
 
 # ifdef MACOS
 #  define OSX 1
@@ -29,18 +30,18 @@ typedef struct	s_obj
 {
 	GLfloat	*vert;
 	size_t	vert_size;
-	GLuint	*indices;
-	size_t	indices_size;
+	GLuint	*ind;
+	size_t	ind_size;
 }				t_obj;
 
 typedef struct	s_mat4
 {
-	GLfloat ptr[16];
-	GLfloat *mat[4];
-	GLfloat *x;
-	GLfloat *y;
-	GLfloat *z;
-	GLfloat *w;
+	GLfloat	ptr[16];
+	GLfloat	*mat[4];
+	GLfloat	*x;
+	GLfloat	*y;
+	GLfloat	*z;
+	GLfloat	*w;
 }				t_mat4;
 
 enum			e_axis
@@ -64,8 +65,9 @@ void			mat_mult(t_mat4 *mat4, t_mat4 *mult);
 void			print_mat4(t_mat4 *mat);
 void			mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y,GLfloat z);
 void			mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis);
+void			mat4_scale(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z);
 void			vec_mult(t_mat4 *mat4, GLfloat vec4[4]);
 int				parser(int argc, char **argv, t_obj *obj);
-int				get_data_size(char **stab, const char *delim, size_t *start);
-int				get_vertex(char **stab, t_obj *obj);
+size_t			get_data_size(char **stab, const char delim);
+int				get_data(char **stab, t_obj *obj);
 #endif
