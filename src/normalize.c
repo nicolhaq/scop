@@ -6,10 +6,11 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 14:19:42 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/09 16:21:48 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/09 16:31:56 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "scop.h"
+#include <stdio.h>
 
 static void	get_vminmax(t_obj *obj)
 {
@@ -56,6 +57,14 @@ void		normalize_scale(t_obj *obj)
 	obj->rescale[3] = 1;
 }
 
+void		normalize_center(t_obj *obj)
+{
+	obj->center[0] = -(obj->min[0] + obj->max[0]) / 2.0f;
+	obj->center[1] = -(obj->min[1] + obj->max[1]) / 2.0f;
+	obj->center[2] = -(obj->min[2] + obj->max[2]) / 2.0f;
+	obj->center[3] = 1;
+}
+
 int			normalize(t_obj *obj)
 {
 	size_t	i;
@@ -63,5 +72,8 @@ int			normalize(t_obj *obj)
 	i = 0;
 	get_vminmax(obj);
 	normalize_scale(obj);
+	normalize_center(obj);
 	return (0);
 }
+
+
