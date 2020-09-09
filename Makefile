@@ -2,7 +2,8 @@
 
 NAME = scop
 
-SRC = data.c\
+SRC = normalize.c\
+	data.c\
 	parser.c\
 	math.c\
 	utils.c\

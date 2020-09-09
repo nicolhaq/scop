@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/27 16:42:18 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/09 15:24:26 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct	s_obj
 	size_t	vert_size;
 	GLuint	*ind;
 	size_t	ind_size;
+	GLfloat	min[3];
+	GLfloat	max[3];
+	GLfloat	rescale[4];
+	GLfloat	center[4];
 }				t_obj;
 
 typedef struct	s_mat4
@@ -63,11 +67,11 @@ const char		*load_source(char *filename);
 void			mat4_init(t_mat4 *mat4, GLfloat source);
 void			mat_mult(t_mat4 *mat4, t_mat4 *mult);
 void			print_mat4(t_mat4 *mat);
-void			mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y,GLfloat z);
+void			mat4_trans(t_mat4 *mat4, GLfloat *vec);
 void			mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis);
-void			mat4_scale(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z);
-void			vec_mult(t_mat4 *mat4, GLfloat vec4[4]);
+void			mat4_scale(t_mat4 *mat4, GLfloat *vec);
 int				parser(int argc, char **argv, t_obj *obj);
 size_t			get_data_size(char **stab, const char delim);
 int				get_data(char **stab, t_obj *obj);
+int				normalize(t_obj *obj);
 #endif

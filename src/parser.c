@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 13:39:08 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/27 16:37:42 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/01 22:18:17 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int				parser(int argc, char **argv, t_obj *obj)
 	free((char*)buf);
 	buf = NULL;
 	ret = get_data(temp, obj);
+	normalize(obj);
 	ft_free_tab((void**)temp);
 	return (ret);
 }

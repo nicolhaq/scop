@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/28 14:23:05 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/09 16:12:12 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)
 		glUseProgram(*shader_program);
 		mat4_init(&trans, 1.0f);
 		mat4_rotat(&trans, (GLfloat)glfwGetTime(), y);
+		mat4_scale(&trans, obj->rescale);
 		transform = glGetUniformLocation(*shader_program, "transform");
 		glUniformMatrix4fv(transform, 1, GL_FALSE, trans.ptr);
 		glBindVertexArray(vao);
@@ -77,6 +78,7 @@ int			main(int argc, char **argv)
 			draw(&window, &shader_program, &obj);
 	}
 	free(obj.vert);
+	free(obj.ind);
 	glfwTerminate();
 	return (error);
 }

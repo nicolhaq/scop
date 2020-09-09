@@ -6,7 +6,7 @@
 /*   By: nhaquet <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 19:19:09 by nhaquet           #+#    #+#             */
-/*   Updated: 2020/08/06 13:56:11 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/01 19:17:28 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,11 @@ static size_t	ft_gety(const char *s, const char sep)
 	while (s[i] != '\0')
 	{
 		while (s[i] == sep && s[i] != '\0')
-		{
 			i++;
-		}
 		if (s[i] != sep && s[i] != '\0')
 			y++;
 		while (s[i] != sep && s[i] != '\0')
-		{
 			i++;
-		}
 	}
 	return (y);
 }
@@ -41,7 +37,7 @@ static char		**ft_strnew2d(size_t len)
 
 	if ((new_str = (char **)malloc(sizeof(char *) * (len + 1))) == NULL)
 		return (NULL);
-	ft_bzero(new_str, len);
+	ft_bzero(new_str, len + 1);
 	return (new_str);
 }
 

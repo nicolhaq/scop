@@ -6,12 +6,13 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/08/28 14:29:01 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/09 15:26:40 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
+#include <stdio.h>
 void	mat4_mult(t_mat4 *mat4, t_mat4 *mult)
 {
 	size_t	i;
@@ -54,44 +55,55 @@ void	mat4_init(t_mat4 *mat4, GLfloat source)
 	mat4->w[3] = source;
 }
 
-/*
-** TODO: need rewrite?
-*/
-void	mat4_scale(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z)
+void	mat4_scale(t_mat4 *mat4, GLfloat *vec)
 {
-	mat4->x[0] = x;
-	mat4->y[1] = y;
-	mat4->z[2] = z;
+	t_mat4	temp;
+
+	mat4_init(&temp, 1);
+	temp.x[0] = vec[0];
+	temp.y[1] = vec[1];
+	temp.z[2] = vec[2];
+	temp.w[3] = vec[3];
+	mat4_mult(mat4, &temp);
 }
 
-void	mat4_trans(t_mat4 *mat4, GLfloat x, GLfloat y, GLfloat z)
+void	mat4_trans(t_mat4 *mat4, GLfloat *vec)
 {
-	mat4->w[0] = x;
-	mat4->w[1] = y;
-	mat4->w[2] = z;
+	t_mat4	temp;
+
+	mat4_init(&temp, 1);
+	temp.w[0] = vec[0];
+	temp.w[1] = vec[1];
+	temp.w[2] = vec[2];
+	temp.w[3] = vec[3];
+	mat4_mult(mat4, &temp);
 }
 
 void	mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis)
 {
+	t_mat4	temp;
+
+	mat4_init(&temp, 1);
 	if (axis == x)
 	{
-		mat4->y[1] = cos(rad);
-		mat4->y[2] = -sin(rad);
-		mat4->z[1] = sin(rad);
-		mat4->z[2] = cos(rad);
+		temp.y[1] = cos(rad);
+		temp.y[2] = -sin(rad);
+		temp.z[1] = sin(rad);
+		temp.z[2] = cos(rad);
 	}
 	else if (axis == y)
 	{
-		mat4->x[0] = cos(rad);
-		mat4->x[2] = sin(rad);
-		mat4->z[0] = -sin(rad);
-		mat4->z[2] = cos(rad);
+		temp.x[0] = cos(rad);
+		temp.x[2] = sin(rad);
+		temp.z[0] = -sin(rad);
+		temp.z[2] = cos(rad);
 	}
 	else if (axis == z)
 	{
-		mat4->x[0] = cos(rad);
-		mat4->x[1] = -sin(rad);
-		mat4->y[0] = sin(rad);
-		mat4->y[1] = cos(rad);
+		temp.x[0] = cos(rad);
+		temp.x[1] = -sin(rad);
+		temp.y[0] = sin(rad);
+		temp.y[1] = cos(rad);
 	}
+	mat4_mult(mat4, &temp);
 }
