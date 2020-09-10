@@ -6,34 +6,35 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 14:19:42 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/09 16:31:56 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/10 13:14:51 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "scop.h"
 #include <stdio.h>
 
 static void	get_vminmax(t_obj *obj)
 {
 	size_t	i;
-	size_t	y;
+	size_t	j;
 
 	i = 0;
-	obj->min[0] = obj->vert[0];
-	obj->min[1] = obj->vert[1];
-	obj->min[2] = obj->vert[2];
-	obj->max[0] = obj->min[0];
-	obj->max[1] = obj->min[1];
-	obj->max[2] = obj->min[2];
+	obj->min[x] = obj->vert[0];
+	obj->min[y] = obj->vert[1];
+	obj->min[z] = obj->vert[2];
+	obj->max[x] = obj->min[x];
+	obj->max[y] = obj->min[y];
+	obj->max[z] = obj->min[z];
 	while (i < obj->vert_size)
 	{
-		y = 0;
-		while (y < 3)
+		j = 0;
+		while (j < 3)
 		{
-			if(obj->min[y] > obj->vert[i])
-				obj->min[y] = obj->vert[i];
-			else if(obj->max[y] < obj->vert[i])
-				obj->max[y] = obj->vert[i];
-			y++;
+			if (obj->min[j] > obj->vert[i])
+				obj->min[j] = obj->vert[i];
+			else if (obj->max[j] < obj->vert[i])
+				obj->max[j] = obj->vert[i];
+			j++;
 			i++;
 		}
 	}
@@ -41,28 +42,28 @@ static void	get_vminmax(t_obj *obj)
 
 void		normalize_scale(t_obj *obj)
 {
-	obj->rescale[0] = obj->max[0] - obj->min[0];
-	obj->rescale[1] = obj->max[1] - obj->min[1];
-	obj->rescale[2] = obj->max[2] - obj->min[2];
-	obj->rescale[3] = obj->rescale[0];
-	if (obj->rescale[3] < obj->rescale[1])
+	obj->rescale[x] = obj->max[x] - obj->min[x];
+	obj->rescale[y] = obj->max[y] - obj->min[y];
+	obj->rescale[z] = obj->max[z] - obj->min[z];
+	obj->rescale[w] = obj->rescale[x];
+	if (obj->rescale[w] < obj->rescale[y])
 	{
-		obj->rescale[3] = obj->rescale[1];
-		if (obj->rescale[3] < obj->rescale[2])
-			obj->rescale[3] = obj->rescale[2];
+		obj->rescale[w] = obj->rescale[y];
+		if (obj->rescale[w] < obj->rescale[z])
+			obj->rescale[w] = obj->rescale[z];
 	}
-	obj->rescale[0] = 1 / obj->rescale[3];
-	obj->rescale[1] = 1 / obj->rescale[3];
-	obj->rescale[2] = 1 / obj->rescale[3];
-	obj->rescale[3] = 1;
+	obj->rescale[x] = 1 / obj->rescale[w];
+	obj->rescale[y] = 1 / obj->rescale[w];
+	obj->rescale[z] = 1 / obj->rescale[w];
+	obj->rescale[w] = 1;
 }
 
 void		normalize_center(t_obj *obj)
 {
-	obj->center[0] = -(obj->min[0] + obj->max[0]) / 2.0f;
-	obj->center[1] = -(obj->min[1] + obj->max[1]) / 2.0f;
-	obj->center[2] = -(obj->min[2] + obj->max[2]) / 2.0f;
-	obj->center[3] = 1;
+	obj->center[x] = -(obj->min[x] + obj->max[x]) / 2.0f;
+	obj->center[y] = -(obj->min[y] + obj->max[y]) / 2.0f;
+	obj->center[z] = -(obj->min[z] + obj->max[z]) / 2.0f;
+	obj->center[w] = 1;
 }
 
 int			normalize(t_obj *obj)
@@ -75,5 +76,3 @@ int			normalize(t_obj *obj)
 	normalize_center(obj);
 	return (0);
 }
-
-
