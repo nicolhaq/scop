@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   mat4_op.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/10 13:06:13 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/10 16:53:18 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,23 @@ void	mat4_trans(t_mat4 *mat4, GLfloat *vec)
 	mat4_mult(mat4, &temp);
 }
 
-void	mat4_rotat(t_mat4 *mat4, GLfloat rad, enum e_axis axis)
+void	mat4_rotat(t_mat4 *mat4, GLfloat rad, GLfloat *vec)
 {
 	t_mat4	temp;
+	float	co;
+	float	si;
 
 	mat4_init(&temp, 1);
-	if (axis == x)
-	{
-		temp.y[y] = cos(rad);
-		temp.y[z] = -sin(rad);
-		temp.z[y] = sin(rad);
-		temp.z[z] = cos(rad);
-	}
-	else if (axis == y)
-	{
-		temp.x[x] = cos(rad);
-		temp.x[z] = sin(rad);
-		temp.z[x] = -sin(rad);
-		temp.z[z] = cos(rad);
-	}
-	else if (axis == z)
-	{
-		temp.x[x] = cos(rad);
-		temp.x[y] = -sin(rad);
-		temp.y[x] = sin(rad);
-		temp.y[y] = cos(rad);
-	}
+	co = cosf(rad);
+	si = sinf(rad);
+	temp.x[x] = vec[x] * vec[x] * (1 - co) + co;
+	temp.x[y] = vec[x] * vec[y] * (1 - co) + vec[z] * si;
+	temp.x[z] = vec[x] * vec[z] * (1 - co) - vec[y] * si;
+	temp.y[x] = vec[y] * vec[x] * (1 - co) - vec[z] * si;
+	temp.y[y] = vec[y] * vec[y] * (1 - co) + co;
+	temp.y[z] = vec[y] * vec[z] * (1 - co) + vec[x] * si;
+	temp.z[x] = vec[z] * vec[x] * (1 - co) + vec[y] * si;
+	temp.z[y] = vec[z] * vec[y] * (1 - co) - vec[x] * si;
+	temp.z[z] = vec[z] * vec[z] * (1 - co) + co;
 	mat4_mult(mat4, &temp);
 }
