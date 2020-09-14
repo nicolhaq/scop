@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/10 15:48:34 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/14 15:52:46 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	model_matrice(t_mat4 *trans, t_obj *obj)
 	mat4_rotat(trans, (GLfloat)glfwGetTime(), vec);
 	mat4_trans(trans, obj->center);
 	mat4_scale(trans, obj->rescale);
+	mat4_perspective(trans, 400.0f, 400.0f, 90.0f);
 }
 
 static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)

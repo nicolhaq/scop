@@ -5,7 +5,8 @@ NAME = scop
 SRC = normalize.c\
 	data.c\
 	parser.c\
-	math.c\
+	mat4_transformation.c\
+	mat4_projection.c\
 	utils.c\
 	init.c\
 	shader.c\
