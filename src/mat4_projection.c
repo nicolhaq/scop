@@ -6,11 +6,29 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:30:46 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/11 16:49:46 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:26:53 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
+
+static void	vec_init(GLfloat *vec, GLfloat pos_x, GLfloat pos_y, GLfloat pos_z)
+{
+	vec[x] = pos_x;
+	vec[y] = pos_y;
+	vec[z] = pos_z;
+}
+
+void	mat4_view(t_mat4 *mat4, GLfloat *axis , GLfloat angle)
+{
+	t_mat4	temp;
+
+	mat4_init( &temp, 1.0f);
+	mat4_trans(&temp, pos);
+	mat4_rotat(&temp, -angle, axis);
+	mat4_scale(&temp, zoom);
+	mat4_mult(mat4, &temp);
+}
 
 void	mat4_perspective(t_mat4 *mat4, GLfloat width,\
 			GLfloat height, GLfloat fov)

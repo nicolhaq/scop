@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/14 15:52:46 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/14 17:31:25 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	populate_vao(GLuint *vao, t_obj *obj)
 	glEnableVertexAttribArray(0);
 }
 
-static void	model_matrice(t_mat4 *trans, t_obj *obj)
+static void	mat4_object(t_mat4 *trans, t_obj *obj)
 {
 	GLfloat vec[3];
 
@@ -63,7 +63,7 @@ static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glUseProgram(*shader_program);
-		model_matrice(&trans, obj);
+		mat4_object(&trans, obj);
 		transform = glGetUniformLocation(*shader_program, "transform");
 		glUniformMatrix4fv(transform, 1, GL_FALSE, trans.ptr);
 		glBindVertexArray(vao);
