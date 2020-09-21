@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/14 16:58:39 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/15 16:45:50 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <GLFW/glfw3.h>
 # include <math.h>
 # include <stdlib.h>
-# include <libft/libft.h>
 # include <string.h>
 # include <errno.h>
+# include <libft/libft.h>
 
 # ifdef MACOS
 #  define OSX 1
@@ -37,6 +37,14 @@ typedef struct	s_obj
 	GLfloat	rescale[4];
 	GLfloat	center[4];
 }				t_obj;
+
+typedef struct	s_cam
+{
+	GLfloat	angle;
+	GLfloat	axis[3];
+	GLfloat	pos[3];
+	GLfloat zoom[3];
+}				t_cam;
 
 typedef struct	s_mat4
 {
@@ -58,9 +66,9 @@ enum			e_axis
 
 void			error_callback(int error, const char *description);
 void			key_callback(GLFWwindow *window, int key, int scancode,\
-				int action, int mods);
+					int action, int mods);
 void			framebuffer_size_callback(GLFWwindow *window, int width,\
-				int height);
+					int height);
 int				init(GLFWwindow **window);
 int				shader_link(GLuint *shader_program);
 const char		*load_source(char *filename);
@@ -69,8 +77,12 @@ void			mat4_mult(t_mat4 *mat4, t_mat4 *mult);
 void			mat4_trans(t_mat4 *mat4, GLfloat *vec);
 void			mat4_rotat(t_mat4 *mat4, GLfloat rad, GLfloat *vec);
 void			mat4_scale(t_mat4 *mat4, GLfloat *vec);
-void			mat4_perspective(t_mat4 *mat4, GLfloat width,\
-					GLfloat height, GLfloat fov);
+void			mat4_perspective(t_mat4 *mat4, GLfloat width,GLfloat height,\
+					GLfloat fov);
+void			mat4_view(t_mat4 *mat4, t_cam *cam);
+void			cam_init(t_cam *cam);
+void			vec_init(GLfloat *vec, GLfloat pos_x, GLfloat pos_y,\
+					GLfloat pos_z);
 int				parser(int argc, char **argv, t_obj *obj);
 size_t			get_data_size(char **stab, const char delim);
 int				get_data(char **stab, t_obj *obj);

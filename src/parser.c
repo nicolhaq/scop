@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 13:39:08 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/01 22:18:17 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/15 16:57:19 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int				parser(int argc, char **argv, t_obj *obj)
 	if (argc != 2)
 		return (-1);
 	buf = load_source(argv[1]);
+	if(!buf)
+		return(-50);
 	temp = ft_strsplit(buf, '\n');
 	free((char*)buf);
 	buf = NULL;

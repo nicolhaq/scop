@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 13:03:29 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:40 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/21 13:52:03 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	mat4_scale(t_mat4 *mat4, GLfloat *vec)
 	temp.x[x] = vec[x];
 	temp.y[y] = vec[y];
 	temp.z[z] = vec[z];
-	temp.w[w] = vec[w];
+	temp.w[w] = 1;
 	mat4_mult(mat4, &temp);
 }
 
@@ -74,7 +74,7 @@ void	mat4_trans(t_mat4 *mat4, GLfloat *vec)
 	temp.w[x] = vec[x];
 	temp.w[y] = vec[y];
 	temp.w[z] = vec[z];
-	temp.w[w] = vec[w];
+	temp.w[w] = 1;
 	mat4_mult(mat4, &temp);
 }
 

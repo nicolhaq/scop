@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/14 17:31:25 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/21 14:13:00 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,35 @@ static void	populate_vao(GLuint *vao, t_obj *obj)
 	glEnableVertexAttribArray(0);
 }
 
-static void	mat4_object(t_mat4 *trans, t_obj *obj)
+static void	mat4_object(t_mat4 *mat, t_obj *obj)
 {
-	GLfloat vec[3];
+	GLfloat	vec[3];
 
-	ft_bzero(vec, 3);
-	vec[y] = 1;
-	mat4_init(trans, 1.0f);
-	mat4_trans(trans, obj->center);
-	mat4_rotat(trans, (GLfloat)glfwGetTime(), vec);
-	mat4_trans(trans, obj->center);
-	mat4_scale(trans, obj->rescale);
-	mat4_perspective(trans, 400.0f, 400.0f, 90.0f);
+	vec_init(vec, 0.0f, 1.0f, 0.0f);
+	mat4_init(mat, 1.0f);
+	mat4_trans(mat, obj->center);
+	mat4_rotat(mat, (GLfloat)glfwGetTime(), vec);
+	mat4_trans(mat, obj->center);
+	mat4_scale(mat, obj->rescale);
 }
 
+static void	mat4_manip(t_mat4 *mat ,t_obj *obj, t_cam *cam)
+{
+
+	mat4_object(mat, obj);
+	mat4_view(mat, cam);
+	mat4_perspective(mat, 600.0f, 600.0f, 90.0f);
+}
 static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)
 {
 	GLuint	vao;
-	t_mat4	trans;
+	t_mat4	mat;
+	t_cam	cam;
 	GLuint	transform;
 	int		size;
 
 	populate_vao(&vao, obj);
+	cam_init(&cam);
 	glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
 	glEnable(GL_DEPTH_TEST);
 	while (!glfwWindowShouldClose(*window))
@@ -63,7 +70,7 @@ static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glUseProgram(*shader_program);
-		mat4_object(&trans, obj);
+		mat4_object(&mat, obj, &cam);
 		transform = glGetUniformLocation(*shader_program, "transform");
 		glUniformMatrix4fv(transform, 1, GL_FALSE, trans.ptr);
 		glBindVertexArray(vao);
