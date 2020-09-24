@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:10:44 by grolash           #+#    #+#             */
-/*   Updated: 2020/07/26 19:28:04 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/24 16:29:17 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			init(GLFWwindow **window)
 	error = 0;
 	if ((error = init_glfw()))
 		return (error);
-	if ((error = init_window(&*window)))
+	if ((error = init_window(window)))
 		return (error);
 	glfwSetKeyCallback(*window, key_callback);
 	glfwSetFramebufferSizeCallback(*window, framebuffer_size_callback);

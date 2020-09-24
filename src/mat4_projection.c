@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:30:46 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/21 13:54:34 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/24 11:26:43 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	vec_init(GLfloat *vec, GLfloat pos_x, GLfloat pos_y, GLfloat pos_z)
 void	cam_init(t_cam *cam)
 {
 	cam->angle = -90.0f;
-	vec_init(cam->pos, 0.0f, 0.0f, 5.0f);
+	vec_init(cam->pos, 0.0f, 0.0f, 0.3);
 	vec_init(cam->axis, 0.0f, 0.01f, 0.0f);
 	vec_init(cam->zoom, 1.0f, 1.0f, 1.0f);
 }
@@ -42,7 +42,7 @@ void	mat4_perspective(t_mat4 *mat4, GLfloat width,\
 			GLfloat height, GLfloat fov)
 {
 	t_mat4	temp;
- 	GLfloat	tanHalfFov;
+	GLfloat	tanHalfFov;
 	GLfloat	near;
 	GLfloat	far;
 

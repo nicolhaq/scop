@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:38:45 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/21 14:13:00 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/24 16:20:59 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ static void	draw(GLFWwindow **window, GLuint *shader_program, t_obj *obj)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glUseProgram(*shader_program);
-		mat4_object(&mat, obj, &cam);
+		mat4_manip(&mat, obj, &cam);
 		transform = glGetUniformLocation(*shader_program, "transform");
-		glUniformMatrix4fv(transform, 1, GL_FALSE, trans.ptr);
+		glUniformMatrix4fv(transform, 1, GL_FALSE, mat.ptr);
 		glBindVertexArray(vao);
 		glDrawElements(GL_TRIANGLES, size / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(*window);

@@ -34,8 +34,10 @@ LIB = -lm -lglfw -ldl -Llib/libft -lft \
 		#-fsanitize=address,undefined -g
 ifeq ($(UNAME),Darwin)
 	CFLAGS += -DMACOS
-	LDFLAGS += -I/Users/nhaquet/homebrew/include
-	LIB += -L/Users/nhaquet/homebrew/lib 
+	LDFLAGS += -I$(HOME)/homebrew/include
+	LDFLAGS += -I$(HOME)/.brew/include
+	LIB += -L$(HOME)/homebrew/lib 
+	LIB += -L$(HOME)/.brew/lib 
 endif
 ############################## COLORS ##########################################
 
