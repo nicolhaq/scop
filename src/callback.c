@@ -6,11 +6,11 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:37 by grolash           #+#    #+#             */
-/*   Updated: 2020/06/22 14:38:14 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/24 15:43:13 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scop.h>
+#include "scop.h"
 
 void	error_callback(int error, const char* description)
 {

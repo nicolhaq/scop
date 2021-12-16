@@ -6,7 +6,7 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:30:46 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/24 11:26:43 by grolash          ###   ########.fr       */
+/*   Updated: 2020/09/25 12:28:05 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	mat4_perspective(t_mat4 *mat4, GLfloat width,\
 	GLfloat	near;
 	GLfloat	far;
 
-	near = 0.01f;
+	near = 0.001f;
 	far = 100.0f;
 	tanHalfFov = tanf((fov / 2.0f) * M_PI / 180.0f);
 	mat4_init(&temp, 1.0f);

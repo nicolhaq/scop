@@ -68,9 +68,9 @@ void		normalize_center(t_obj *obj)
 
 int			normalize(t_obj *obj)
 {
-	size_t	i;
+	// size_t	i;
 
-	i = 0;
+	// i = 0;
 	get_vminmax(obj);
 	normalize_scale(obj);
 	normalize_center(obj);

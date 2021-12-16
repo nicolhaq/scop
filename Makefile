@@ -2,7 +2,8 @@
 
 NAME = scop
 
-SRC = normalize.c\
+SRC = event.c\
+	normalize.c\
 	data.c\
 	parser.c\
 	mat4_transformation.c\

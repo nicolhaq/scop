@@ -6,19 +6,19 @@
 /*   By: grolash <nhaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 23:35:58 by grolash           #+#    #+#             */
-/*   Updated: 2020/09/15 16:45:50 by grolash          ###   ########.fr       */
+/*   Updated: 2020/11/23 20:23:30 by grolash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCOP_H
 # define SCOP_H
-# include <glad/glad.h>
+# include "glad/glad.h"
 # include <GLFW/glfw3.h>
 # include <math.h>
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
-# include <libft/libft.h>
+# include "libft/libft.h"
 
 # ifdef MACOS
 #  define OSX 1
@@ -87,4 +87,5 @@ int				parser(int argc, char **argv, t_obj *obj);
 size_t			get_data_size(char **stab, const char delim);
 int				get_data(char **stab, t_obj *obj);
 int				normalize(t_obj *obj);
+void 			cam_key(GLFWwindow **windows, t_cam *cam);
 #endif
